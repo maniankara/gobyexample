@@ -25,7 +25,7 @@ func putRequest(url string, data io.Reader)  {
 
 }
 
-func httpPut()  {
+func httpPutExample()  {
 	putRequest("http://google.com", strings.NewReader("any thing"))
 
 	var jsonStr string = []bytes {"name":"Rob", "title":"developer"}
