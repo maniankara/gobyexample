@@ -6,6 +6,7 @@ import (
 	"log"
 	"strings"
 	"os"
+	"bytes"
 )
 
 func putRequest(url string, data io.Reader)  {
@@ -24,19 +25,17 @@ func putRequest(url string, data io.Reader)  {
 
 }
 
-func putRequestJson(url string, path string) {
+func httpPut()  {
+	putRequest("http://google.com", strings.NewReader("any thing"))
+
+	var jsonStr string = []bytes {"name":"Rob", "title":"developer"}
+	putRequest("http://msn.com", bytes.NewBuffer(jsonStr))
+
 	// read the file
-	data, err := os.Open(path)
+	data, err := os.Open("/path/to/file.json")
 	if err != nil {
 		//handle error
 		log.Fatal(err)
 	}
-	putRequest(url, data)
-
-}
-
-func main()  {
-	putRequest("http://google.com", strings.NewReader("any thing"))
-
-	putRequestJson("http://yahoo.com", "/path/to/file.json")
+	putRequest("http://yahoo.com", data)
 }
